@@ -1,0 +1,34 @@
+<html>
+  <header>
+    <link rel="stylesheet" href="src/css/wordlist.css"/>
+    <script charset="utf-8" src="build/out.js"></script>
+  </header>
+  <body>
+    <div class="selection">
+      <div class="menuouter">
+        <div class="menuheader">
+          <span>Pick your wordlist.</span>
+        </div>
+        <div class="menuoptions">
+          <ul class="wordlist">
+            <li>
+              <input type='radio' value='48' name='wordlist' id='wordlist1' autofocus/>
+              <label for='wordlist1'>English Words [48]</label>
+            </li>
+            <li>
+              <input type='radio' value='96' name='wordlist'  id='wordlist2'/>
+              <label for='wordlist2'>English Words [96]</label>
+            </li>
+            <li>
+              <input type='radio' value='192' name='wordlist'  id='wordlist3'/>
+              <label for='wordlist3'>English Words [192]</label>
+            </li>
+          </ul>
+        </div>
+        <div class="menubuttons">
+          <a href="type.html" onclick='onSubmit()'>&lt; Select &gt;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

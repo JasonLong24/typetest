@@ -1,0 +1,27 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: black;
+  margin: 0px;
+}
+
+.bottom-container {
+  background: #0000ff;
+  height: 125px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.word-container {
+  font-size: 18px;
+  margin: auto;
+  width: 65%;
+}
+
+.word-container p {
+  color: white;
+}
+
+span {
+  color: white;
+}
