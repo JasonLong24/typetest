@@ -1,4 +1,5 @@
 var randomWords = require('random-words');
+var amt = 0;
 
 window.getCheckedValue = function() {
   let radios = document.getElementsByTagName('input');
@@ -36,4 +37,23 @@ window.onTypeLoad = function() {
     createE.appendChild(createN);
     document.getElementById('words').appendChild(createE);
   }
+}
+
+window.startTest = function(event) {
+  var keyType = event.which || event.keyCode;
+  var targetWord = document.getElementById("word" + amt).innerText;
+  var inputWord = document.getElementById("typeInput").value;
+
+  if(keyType == 32) {
+    if(inputWord.trim() == targetWord.trim()) {
+      console.log("equals");
+      document.getElementById("word" + amt).style.color = "green";
+    } else {
+      console.log("doesn't equal");
+      document.getElementById("word" + amt).style.color = "red";
+    }
+    document.getElementById("typeInput").value = "";
+    amt++;
+  }
+  document.getElementById("word" + amt).style.color = "yellow";
 }
