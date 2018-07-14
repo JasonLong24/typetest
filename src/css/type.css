@@ -13,6 +13,17 @@ body {
   align-content: center;
 }
 
+.bottom-accuracy p {
+  color: white;
+  margin: 0px;
+  display: inline;
+  word-wrap: break-word;
+}
+
+#incorrect {
+  margin-left: 10px;
+}
+
 #typeInput {
   background: #0000ff;
   color: white;

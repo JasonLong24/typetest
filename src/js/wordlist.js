@@ -1,5 +1,6 @@
 var randomWords = require('random-words');
 var amt = 0;
+var correct = 0, wrong = 0;
 
 window.getCheckedValue = function() {
   let radios = document.getElementsByTagName('input');
@@ -44,16 +45,40 @@ window.startTest = function(event) {
   var targetWord = document.getElementById("word" + amt).innerText;
   var inputWord = document.getElementById("typeInput").value;
 
+  console.log(howGood(correct));
+
   if(keyType == 32) {
     if(inputWord.trim() == targetWord.trim()) {
-      console.log("equals");
+      correct++;
       document.getElementById("word" + amt).style.color = "green";
+      document.getElementById("correct").innerText = correct + "/" + localStorage.getItem("wordListLength");
     } else {
-      console.log("doesn't equal");
+      wrong++;
       document.getElementById("word" + amt).style.color = "red";
+      document.getElementById("incorrect").innerText = wrong;
     }
     document.getElementById("typeInput").value = "";
+    document.getElementById("howGood").innerText = "(" + howGood(correct) + ")";
     amt++;
   }
   document.getElementById("word" + amt).style.color = "yellow";
+}
+
+window.howGood = function(cor) {
+  switch(true) {
+    case cor < localStorage.getItem("wordListLength") / 3:
+      return "Poor";
+      break;
+    case cor < localStorage.getItem("wordListLength") / 2:
+      return "Good";
+      break;
+    case cor >= localStorage.getItem("wordListLength") / 1.5:
+      return "Excellent";
+      break;
+    case cor = localStorage.getItem("wordListLength"):
+      return "Perfect";
+      break;
+    default:
+      return "Good";
+  }
 }
