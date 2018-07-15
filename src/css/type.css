@@ -13,7 +13,7 @@ body {
   align-content: center;
 }
 
-.bottom-accuracy p {
+.bottom-accuracy p, .bottom-wpm p {
   color: white;
   margin: 0px;
   display: inline;

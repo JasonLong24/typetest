@@ -1,6 +1,7 @@
 var randomWords = require('random-words');
 var amt = 0;
 var correct = 0, wrong = 0;
+var elapsed = '0.0';
 
 window.getCheckedValue = function() {
   let radios = document.getElementsByTagName('input');
@@ -44,7 +45,7 @@ window.startTest = function(event) {
   var keyType = event.which || event.keyCode;
   var targetWord = document.getElementById("word" + amt).innerText;
   var inputWord = document.getElementById("typeInput").value;
-
+  timer();
   console.log(howGood(correct));
 
   if(keyType == 32) {
@@ -57,6 +58,7 @@ window.startTest = function(event) {
       document.getElementById("word" + amt).style.color = "red";
       document.getElementById("incorrect").innerText = wrong;
     }
+    document.getElementById("wpm").innerText = wordsPerMin() + " wpm";
     document.getElementById("typeInput").value = "";
     document.getElementById("howGood").innerText = "(" + howGood(correct) + ")";
     amt++;
@@ -82,3 +84,23 @@ window.howGood = function(cor) {
       return "Good";
   }
 }
+
+var exec = false;
+window.timer = function() {
+  if(!exec) {
+    exec = true;
+    var start = new Date().getTime();
+
+    window.setInterval(function() {
+      var time = new Date().getTime() - start;
+      elapsed = Math.floor(time / 100) / 10;
+      if(Math.round(elapsed) == elapsed) { elapsed += '.0'; }
+      document.getElementById("timer").innerText = elapsed + "s";
+    }, 100);
+  }
+}
+
+window.wordsPerMin = function() {
+  var words = (correct / elapsed) * 60;
+  return words.toFixed(2);
+} 
