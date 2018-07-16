@@ -4,7 +4,7 @@ body {
   margin: 0px;
 }
 
-.bottom-container {
+#bottom-container {
   background: #0000ff;
   height: 125px;
   width: 100%;
@@ -56,4 +56,18 @@ body {
 
 span {
   color: white;
+}
+
+#bottom-gameover {
+  background: ##0000ff;
+  color: white;
+  bottom: 0px;
+  position: absolute;
+  width: inherit;
+  height: 20px;
+}
+
+#bottom-gameover p {
+  color: white;
+  margin: 0px;
 }

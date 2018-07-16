@@ -28,7 +28,6 @@ window.onSubmit = function() {
 window.parseWordList = function(num) {
   var wordlist = localStorage.getItem("wordList").split(',');
   return wordlist[num];
-  console.log(wordlist[0]); 
 }
 
 window.onTypeLoad = function() {
@@ -62,6 +61,7 @@ window.startTest = function(event) {
     document.getElementById("typeInput").value = "";
     document.getElementById("howGood").innerText = "(" + howGood(correct) + ")";
     amt++;
+    endTest();
   }
   document.getElementById("word" + amt).style.color = "yellow";
 }
@@ -104,3 +104,22 @@ window.wordsPerMin = function() {
   var words = (correct / elapsed) * 60;
   return words.toFixed(2);
 } 
+
+window.endTest = function() {
+  if(amt == localStorage.getItem("wordListLength")) {
+    console.log("Game Over");
+    window.clearInterval(2);
+    var parent = document.getElementById("bottom-container");
+    var child = document.getElementById("typeInput");
+    parent.removeChild(child);
+    document.getElementById("bottom-gameover").style.background = "#cc0000";  
+    document.getElementById("gameover-text").innerText = "Press escape to leave the game.";
+    window.onkeyup = function(e) {
+      var key = e.keyCode ? e.keyCode : e.which;
+      if (key == 27) {
+        console.log("Escape Pressed!");
+        document.location.href = "index.html";
+      }
+    }
+  }
+}
