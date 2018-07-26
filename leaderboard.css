@@ -1,0 +1,12 @@
+head {
+
+}
+#Ti {
+  text-align:center;
+  align-content: center;
+}
+#leaderboard {
+  font-family:'Courier New', Courier, monospace;
+  border-collapse:separate;
+  width:100%;
+}
