@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/js/",
   "scripts": {
-    "build": "browserify src/js/require.js -o build/out.js",
-    "dev": "watchify src/js/require.js -o build/out.js",
+    "build": "browserify -r random-words -o build/out.js",
+    "dev": "watchify -r random-words -o build/out.js",
     "start": "npm run build && node build/out.js"
   },
   "keywords": [],
