@@ -1,4 +1,3 @@
-var randomWords = require('random-words');
 var amt = 0;
 var correct = 0, wrong = 0;
 var elapsed = '0.0';

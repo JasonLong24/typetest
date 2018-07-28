@@ -1,6 +1,4 @@
-var app_firebase = {};
-
-(function(){
+function startFirebase(){
   var config = {
     apiKey: "AIzaSyDg9Cgm80ODTFAcVJbQ5rJ-WyseNG8GYFY",
     authDomain: "type-test-javascript.firebaseapp.com",
@@ -11,5 +9,26 @@ var app_firebase = {};
   };
   firebase.initializeApp(config);
 
-  app_firebase = firebase;
-})()
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      isLoggedIn("< Logout >");
+      localStorage.setItem("UserID", user.uid);
+      localStorage.setItem("Username", user.displayName);
+    } else {
+      isLoggedIn("< Login >");
+      localStorage.setItem("UserID", "none");
+      localStorage.setItem("Username", "none");
+    }
+  });
+}
+
+function logout() {
+  firebase.auth().signOut();
+}
+
+function isLoggedIn(state) {
+  if(window.location.pathname == "/index.html") {
+    document.getElementById("logButton").innerText = state;
+  }
+}
+startFirebase();
