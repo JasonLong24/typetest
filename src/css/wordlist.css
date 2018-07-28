@@ -6,9 +6,12 @@ body {
 span {
   padding-right: 5px;
   padding-left: 5px;
-  background-color: #ccc;
   color: #725dfc;
   text-transform: uppercase;
+}
+
+.menuheader span {
+  background-color: #ccc;
 }
 
 .selection {
