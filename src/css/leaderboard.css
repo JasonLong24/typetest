@@ -7,6 +7,13 @@ head {
 }
 #leaderboard {
   font-family:'Courier New', Courier, monospace;
-  border-collapse:separate;
+  border-collapse: collapse;
   width:100%;
+}
+
+td, th {
+  text-align: center;
+  width: 33%;
+  padding: 5px;
+  border: 1px solid #dddddd;
 }
