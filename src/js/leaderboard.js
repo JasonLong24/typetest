@@ -1,8 +1,11 @@
 var leaderboard = document.getElementById('leaderboard');
 var row = 0;
+<<<<<<< HEAD
 var database = firebase.database();
 var ref = database.ref('test');
 
+=======
+>>>>>>> dc63e0e8fd2f819c3065e37a0b688ba3587281fe
 var NewPlayer = {
   Name:function()
   {
@@ -139,3 +142,6 @@ var NewPlayer = {
 // for(var i=0; i<50; i++) {
 //   NewPlayer.Add("Player"+i, i+"/48", i);
 // }
+for(var i=0; i<50; i++) {
+  NewPlayer.Add("Player"+i, i+"/48", i);
+}
