@@ -1,5 +1,8 @@
 var leaderboard = document.getElementById('leaderboard');
 var row = 0;
+var database = firebase.database();
+var ref = database.ref('test');
+
 var NewPlayer = {
   Name:function()
   {
@@ -33,6 +36,75 @@ var NewPlayer = {
       }
     }
   },
+  Push:function()
+  {
+    ref.on('value', gotData, errData);
+    var run = false;
+    function gotData(data) {
+      console.log(data.val());
+      var scores = data.val();
+      var key = Object.keys(scores);
+      var iter = key.length;      
+
+      for(i=0; i < iter; i++) {
+        var currentKey = key[i];
+        var name = scores[currentKey].name;
+        if(localStorage.getItem("Username") == name) {
+          console.log("HI");
+          if(parseInt(localStorage.getItem("wpm")) > parseInt(scores[currentKey].wpm)) {
+            console.log("HI");
+            database.ref('test/' + currentKey).set({
+              name: localStorage.getItem("Username"),
+              acc: "40/48",
+              wpm: localStorage.getItem("wpm")
+            });
+          } else {
+            run();
+            break;
+          }
+        }
+      }
+    }
+    function errData(err) {
+      console.log(err);
+    }
+    var run = (function() {
+      var executed = false;
+      return function() {
+        if (!executed) {
+          executed = true;
+          // do something
+          var hash = Math.random().toString(36).substring(7);
+          console.log("Anonymous" + hash);
+          var data = {
+            name: "Anonymous" + hash,
+            acc: "30/48",
+            wpm: localStorage.getItem("wpm")
+          }
+          ref.push(data); 
+        }
+      };
+    })();
+  },
+  Retrive:function()
+  {
+    ref.on('value', gotData, errData);
+
+    function gotData(data) {
+      console.log(data.val());
+      var scores = data.val();
+      var key = Object.keys(scores);
+      for(i=0; i < key.length; i++) {
+        var currentKey = key[i];
+        var name = scores[currentKey].name;
+        var wpm = scores[currentKey].wpm;
+        NewPlayer.Add(scores[currentKey].name, scores[currentKey].acc, scores[currentKey].wpm);
+      }
+    }
+    function errData(err) {
+      console.log(err);
+    }
+  },
   Sort:function()
   {
     var table, rows, switching, i, x, y, shouldSwitch;
@@ -58,6 +130,12 @@ var NewPlayer = {
   }
 
 };
-for(var i=0; i<50; i++) {
-  NewPlayer.Add("Player"+i, i+"/48", i);
-}
+// var data = {
+//   name: "Jason Long",
+//   acc: "40/48",
+//   wpm: "64"
+// }
+// ref.push(data);
+// for(var i=0; i<50; i++) {
+//   NewPlayer.Add("Player"+i, i+"/48", i);
+// }

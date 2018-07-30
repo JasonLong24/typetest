@@ -114,6 +114,7 @@ window.endTest = function() {
     parent.removeChild(child);
     document.getElementById("bottom-gameover").style.background = "#cc0000";  
     document.getElementById("gameover-text").innerText = "Press escape to leave the game.";
+    localStorage.setItem("wpm", wordsPerMin());
     window.onkeyup = function(e) {
       var key = e.keyCode ? e.keyCode : e.which;
       if (key == 27) {
