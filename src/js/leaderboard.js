@@ -1,11 +1,8 @@
 var leaderboard = document.getElementById('leaderboard');
 var row = 0;
-<<<<<<< HEAD
 var database = firebase.database();
 var ref = database.ref('test');
 
-=======
->>>>>>> dc63e0e8fd2f819c3065e37a0b688ba3587281fe
 var NewPlayer = {
   Name:function()
   {
@@ -41,10 +38,9 @@ var NewPlayer = {
   },
   Push:function()
   {
-    ref.on('value', gotData, errData);
-    var run = false;
+    ref.once('value', gotData, errData);
+
     function gotData(data) {
-      console.log(data.val());
       var scores = data.val();
       var key = Object.keys(scores);
       var iter = key.length;      
@@ -52,13 +48,13 @@ var NewPlayer = {
       for(i=0; i < iter; i++) {
         var currentKey = key[i];
         var name = scores[currentKey].name;
-        if(localStorage.getItem("Username") == name) {
+        if(localStorage.getItem("Username") == name || localStorage.getItem("Username") == "none") {
           console.log("HI");
           if(parseInt(localStorage.getItem("wpm")) > parseInt(scores[currentKey].wpm)) {
             console.log("HI");
             database.ref('test/' + currentKey).set({
               name: localStorage.getItem("Username"),
-              acc: "40/48",
+              acc: localStorage.getItem("acc"),
               wpm: localStorage.getItem("wpm")
             });
           } else {
@@ -81,7 +77,7 @@ var NewPlayer = {
           console.log("Anonymous" + hash);
           var data = {
             name: "Anonymous" + hash,
-            acc: "30/48",
+            acc: localStorage.getItem("acc"),
             wpm: localStorage.getItem("wpm")
           }
           ref.push(data); 
@@ -91,7 +87,7 @@ var NewPlayer = {
   },
   Retrive:function()
   {
-    ref.on('value', gotData, errData);
+    ref.once('value', gotData, errData);
 
     function gotData(data) {
       console.log(data.val());
@@ -101,7 +97,9 @@ var NewPlayer = {
         var currentKey = key[i];
         var name = scores[currentKey].name;
         var wpm = scores[currentKey].wpm;
+        document.getElementById('leadBody').innerHTML = '';
         NewPlayer.Add(scores[currentKey].name, scores[currentKey].acc, scores[currentKey].wpm);
+        NewPlayer.Sort();
       }
     }
     function errData(err) {
@@ -133,6 +131,10 @@ var NewPlayer = {
   }
 
 };
+
+NewPlayer.Push();
+NewPlayer.Retrive();
+NewPlayer.Sort();
 // var data = {
 //   name: "Jason Long",
 //   acc: "40/48",
@@ -142,6 +144,6 @@ var NewPlayer = {
 // for(var i=0; i<50; i++) {
 //   NewPlayer.Add("Player"+i, i+"/48", i);
 // }
-for(var i=0; i<50; i++) {
-  NewPlayer.Add("Player"+i, i+"/48", i);
-}
+// for(var i=0; i<50; i++) {
+//   NewPlayer.Add("Player"+i, i+"/48", i);
+// }

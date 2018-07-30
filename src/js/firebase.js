@@ -9,26 +9,29 @@ function startFirebase(){
   };
   firebase.initializeApp(config);
 
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      isLoggedIn("< Logout >");
-      localStorage.setItem("UserID", user.uid);
-      localStorage.setItem("Username", user.displayName);
-    } else {
-      isLoggedIn("< Login >");
-      localStorage.setItem("UserID", "none");
-      localStorage.setItem("Username", "none");
-    }
-  });
-}
+  /*
+   * TODO: Implement this login system with the leaderboard
+   */
+  // firebase.auth().onAuthStateChanged(function(user) {
+  //   if (user) {
+  //     isLoggedIn("< Logout >");
+  //     localStorage.setItem("UserID", user.uid);
+  //     localStorage.setItem("Username", user.displayName);
+  //   } else {
+  //     isLoggedIn("< Login >");
+  //     localStorage.setItem("UserID", "none");
+  //     localStorage.setItem("Username", "none");
+  //   }
+  // });
+// }
 
-function logout() {
-  firebase.auth().signOut();
-}
+// function logout() {
+  // firebase.auth().signOut();
+// }
 
-function isLoggedIn(state) {
-  if(window.location.pathname == "/index.html") {
-    document.getElementById("logButton").innerText = state;
-  }
+// function isLoggedIn(state) {
+  // if(window.location.pathname == "/index.html") {
+  //   document.getElementById("logButton").innerText = state;
+  // }
 }
 startFirebase();

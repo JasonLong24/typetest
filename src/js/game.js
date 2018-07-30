@@ -115,11 +115,13 @@ window.endTest = function() {
     document.getElementById("bottom-gameover").style.background = "#cc0000";  
     document.getElementById("gameover-text").innerText = "Press escape to leave the game.";
     localStorage.setItem("wpm", wordsPerMin());
+    localStorage.setItem("acc", correct + "/" + localStorage.getItem("wordListLength"));
+    console.log(correct);
     window.onkeyup = function(e) {
       var key = e.keyCode ? e.keyCode : e.which;
       if (key == 27) {
         console.log("Escape Pressed!");
-        document.location.href = "index.html";
+        document.location.href = "leaderboard.html";
       }
     }
   }
