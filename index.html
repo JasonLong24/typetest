@@ -1,9 +1,7 @@
 <html>
   <header>
     <link rel="stylesheet" href="src/css/wordlist.css"/>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
     <script charset="utf-8" src="build/out.js"></script>
-    <script charset="utf-8" src="src/js/firebase.js"></script>
     <script charset="utf-8" src="src/js/game.js"></script>
   </header>
   <body>
@@ -15,16 +13,33 @@
         <div class="menuoptions">
           <ul class="wordlist">
             <li>
-              <input type='radio' value='48' name='wordlist' id='wordlist1' autofocus/>
+              <input type='radio' value='48' name='wordlist' wordlist_id='en_wordlist' id="wordlist1" autofocus/>
               <label for='wordlist1'>English Words [48]</label>
             </li>
             <li>
-              <input type='radio' value='96' name='wordlist'  id='wordlist2'/>
+              <input type='radio' value='96' name='wordlist'  wordlist_id='en_wordlist' id="wordlist2"/>
               <label for='wordlist2'>English Words [96]</label>
             </li>
             <li>
-              <input type='radio' value='192' name='wordlist'  id='wordlist3'/>
-              <label for='wordlist3'>English Words [192]</label>
+              <input type='radio' value='128' name='wordlist' wordlist_id='en_wordlist' id="wordlist3"/>
+              <label for='wordlist3'>English Words [128]</label>
+            </li>
+            <hr>
+            <li>
+              <input type='radio' value='24' name='wordlist' wordlist_id='ran5_wordlist' id="wordlist4"/>
+              <label for='wordlist4'>Random Characters [5 Character - 24]</label>
+            </li>
+            <li>
+              <input type='radio' value='48' name='wordlist' wordlist_id='ran5_wordlist' id="wordlist5"/>
+              <label for='wordlist5'>Random Characters [5 Character - 48]</label>
+            </li>
+            <li>
+              <input type='radio' value='24' name='wordlist' wordlist_id='ran5_wordlist' id="wordlist6"/>
+              <label for='wordlist6'>Random Characters [2 Character - 24]</label>
+            </li>
+            <li>
+              <input type='radio' value='48' name='wordlist' wordlist_id='ran5_wordlist' id="wordlist7"/>
+              <label for='wordlist7'>Random Characters [2 Character - 48]</label>
             </li>
           </ul>
         </div>

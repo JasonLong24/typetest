@@ -5,24 +5,54 @@ var elapsed = '0.0';
 
 window.getCheckedValue = function() {
   let radios = document.getElementsByTagName('input');
-  let value;
+  let value, wordlist_id, words;
   for (var i = 0; i < radios.length; i++) {
     if (radios[i].type === 'radio' && radios[i].checked) {
       value = radios[i].value;
+      wordlist_id = radios[i].id;
     }
   }
-  return value;
+
+  findWordListType(wordlist_id, value);
+}
+
+window.findWordListType = function(wordlistid, length) {
+  let words;
+  switch(wordlistid) {
+    case "wordlist1":
+    case "wordlist2":
+    case "wordlist3":
+      words = randomWords(parseInt(length)); break;
+    case "wordlist4":
+    case "wordlist5":
+      words = genRandChar(5, length); break;
+    case "wordlist6":
+    case "wordlist7":
+      words = genRandChar(2, length); break;
+    default:
+      words = "nothing"; break;
+  }
+
+  localStorage.setItem("wordList", words);
+  localStorage.setItem("wordListLength", words.length);
 }
 
 window.genRandWord = function(amount) {
-  console.log(randomWords(amount)); 
+  console.log(randomWords(amount));
+}
+
+window.genRandChar = function(length, amount) {
+  let ranCharString;
+  let ranCharArray = [];
+  for (var i=0; i < amount; i++) {
+    ranCharString = Math.random().toString(36).substr(2, length);
+    ranCharArray.push(ranCharString);
+  }
+  return ranCharArray;
 }
 
 window.onSubmit = function() {
-  var val = parseInt(getCheckedValue());
-  var words = randomWords(val);
-  localStorage.setItem("wordList", words);
-  localStorage.setItem("wordListLength", words.length);
+  getCheckedValue();
 }
 
 window.parseWordList = function(num) {
@@ -103,7 +133,7 @@ window.timer = function() {
 window.wordsPerMin = function() {
   var words = (correct / elapsed) * 60;
   return words.toFixed(2);
-} 
+}
 
 window.endTest = function() {
   if(amt == localStorage.getItem("wordListLength")) {
@@ -112,7 +142,7 @@ window.endTest = function() {
     var parent = document.getElementById("bottom-container");
     var child = document.getElementById("typeInput");
     parent.removeChild(child);
-    document.getElementById("bottom-gameover").style.background = "#cc0000";  
+    document.getElementById("bottom-gameover").style.background = "#cc0000";
     document.getElementById("gameover-text").innerText = "Press escape to leave the game.";
     window.onkeyup = function(e) {
       var key = e.keyCode ? e.keyCode : e.which;
